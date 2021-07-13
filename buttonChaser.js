@@ -2,7 +2,7 @@ var score = 0
 var aWidth;
 var aHeight;
 var timer;
-var iterations;
+var iterations = 0;
 
 window.addEventListener('load', setGameAreaBounds)
 
@@ -19,7 +19,7 @@ function setGameAreaBounds() {
     moveDot();
 }
 
-function detectHite() {
+function detectHit() {
     score += 1;
     document.getElementById('scoreLabel').innerHTML = "Score: " + score;
 }
@@ -38,8 +38,12 @@ function moveDot() {
     }
     else {
         document.getElementById('scoreLabel').innerHTML += "     Game Over!";
+        document.getElementById('dot').removeEventListener("click", detectHit);
+        clearTimeout(timer);
     }
-    }
+    iterations ++;
 
 }
+
+
 
